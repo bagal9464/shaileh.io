@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Romantic Background</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Using Google Fonts for the script text -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+
+<body>
+    <div class="mobile-container">
+        <!-- Home Screen Greeting -->
+        <h1 class="home-greeting" id="greeting-text">For Jerry 💖</h1>
+
+        <!-- Floating hearts generator -->
+        <div id="floating-hearts-layer"></div>
+
+        <!-- Raining rose petals layer -->
+        <div id="raining-petals-layer"></div>
+
+        <!-- Static hearts resting on clouds -->
+        <div id="static-hearts-layer"></div>
+
+        <!-- Interactive Envelope Button -->
+        <div class="envelope-container" id="tap-envelope">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="body"></div>
+                <div class="heart-seal">💖</div>
+            </div>
+            <p class="envelope-text">Open Me</p>
+        </div>
+
+        <!-- Hot Air Balloon -->
+        <div class="balloon-container" id="interactive-balloon">
+            <svg class="hot-air-balloon" viewBox="0 0 100 150">
+                <!-- Balloon Envelope Background -->
+                <path d="M50,10 C20,10 10,40 20,70 C30,100 45,110 50,115 C55,110 70,100 80,70 C90,40 80,10 50,10 Z"
+                    fill="#ffffff" filter="drop-shadow(0px 4px 6px rgba(0,0,0,0.15))" />
+                <!-- Pink stripes -->
+                <path d="M50,10 C20,10 20,40 25,70 C30,100 45,110 50,115 C40,100 35,70 35,40 C35,20 40,10 50,10 Z"
+                    fill="#ff6699" />
+                <path d="M50,10 C80,10 80,40 75,70 C70,100 55,110 50,115 C60,100 65,70 65,40 C65,20 60,10 50,10 Z"
+                    fill="#ff6699" />
+                <!-- Center stripe pink -->
+                <!-- Let's just do a big center stripe to match the two sides -->
+                <path d="M45,10 C45,10 40,40 40,70 C40,90 45,105 50,115 C55,105 60,90 60,70 C60,40 55,10 55,10 Z"
+                    fill="#ff6699" />
+                <!-- Basket strings -->
+                <line x1="40" y1="110" x2="35" y2="130" stroke="#fff" stroke-width="1.5" />
+                <line x1="50" y1="115" x2="50" y2="130" stroke="#fff" stroke-width="1.5" />
+                <line x1="60" y1="110" x2="65" y2="130" stroke="#fff" stroke-width="1.5" />
+                <!-- Basket -->
+                <rect x="30" y="130" width="40" height="20" rx="4" fill="#fff"
+                    filter="drop-shadow(0px 2px 3px rgba(0,0,0,0.2))" />
+                <!-- Little hearts in basket -->
+                <path
+                    d="M40,128 C40,128 35,123 35,119 C35,115 40,115 42,117 C44,115 49,115 49,119 C49,123 40,128 40,128 Z"
+                    fill="#ff3366" />
+                <path
+                    d="M50,125 C50,125 45,120 45,116 C45,112 50,112 52,114 C54,112 59,112 59,116 C59,120 50,125 50,125 Z"
+                    fill="#e60000" />
+                <path
+                    d="M60,128 C60,128 55,123 55,119 C55,115 60,115 62,117 C64,115 69,115 69,119 C69,123 60,128 60,128 Z"
+                    fill="#ff3366" />
+            </svg>
+        </div>
+
+        <!-- Quote -->
+        <div class="quote-container">
+            <span class="quote-mark left">“</span>
+            <p>Distance may stop my hands from giving you real flowers, but it will never stop my heart from sending you
+                love.</p>
+            <p>Please accept this digital bouquet until I can bring you the real ones.</p>
+            <span class="quote-mark right">”</span>
+            <p class="author-name">- Jerry</p>
+        </div>
+
+        <!-- Paper Clouds at bottom -->
+        <!-- Multiple layers to give 3D effect -->
+        <div class="clouds-container">
+            <!-- Background pink clouds -->
+            <div class="cloud-layer layer-1">
+                <div class="cloud-puff" style="width: 150px; height: 150px; left: -30px; bottom: 20px;"></div>
+                <div class="cloud-puff" style="width: 200px; height: 200px; left: 80px; bottom: 40px;"></div>
+                <div class="cloud-puff" style="width: 160px; height: 160px; left: 220px; bottom: 15px;"></div>
+            </div>
+
+            <!-- Mid white pink clouds -->
+            <div class="cloud-layer layer-2">
+                <div class="cloud-puff" style="width: 160px; height: 160px; left: -50px; bottom: 0px;"></div>
+                <div class="cloud-puff" style="width: 220px; height: 220px; left: 50px; bottom: 10px;"></div>
+                <div class="cloud-puff" style="width: 180px; height: 180px; left: 190px; bottom: 0;"></div>
+            </div>
+
+            <!-- Foreground white clouds -->
+            <div class="cloud-layer layer-3">
+                <div class="cloud-puff" style="width: 200px; height: 200px; left: -80px; bottom: -50px;"></div>
+                <div class="cloud-puff" style="width: 250px; height: 250px; left: 60px; bottom: -60px;"></div>
+                <div class="cloud-puff" style="width: 220px; height: 220px; left: 180px; bottom: -80px;"></div>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
