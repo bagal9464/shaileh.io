@@ -112,67 +112,66 @@ function spawnPetal() {
     }, duration * 1000);
 }
 
-const quoteLines = [
-    "Distance may stop my hands from giving you real flowers, but it will never stop my heart from sending you love.",
-    "Please accept this digital bouquet until I can bring you the real ones."
-];
 
 function typeWriter(text, element, i, cb) {
-    if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-        setTimeout(() => typeWriter(text, element, i + 1, cb), 60); // Speed
+    const chars = Array.isArray(text) ? text : [...text];
+    if (i < chars.length) {
+        const cursorNode = element.querySelector('.typewriter-cursor');
+        if (cursorNode) {
+            element.insertBefore(document.createTextNode(chars[i]), cursorNode);
+        } else {
+            element.appendChild(document.createTextNode(chars[i]));
+        }
+        setTimeout(() => typeWriter(chars, element, i + 1, cb), 60);
     } else if (cb) {
         cb();
     }
 }
 
 envelope.addEventListener('click', () => {
-    // Hide envelope
     envelope.classList.add('hide');
-
-    // Show container (so quote marks animate in)
     quoteContainer.classList.add('show');
 
-    // Prep typing elements
     const pElements = quoteContainer.querySelectorAll('p:not(.author-name)');
     const authorElement = quoteContainer.querySelector('.author-name');
+
+    const quoteLine1 = pElements.length > 0 ? pElements[0].textContent.trim() : "";
+    const quoteLine2 = pElements.length > 1 ? pElements[1].textContent.trim() : "";
 
     pElements.forEach(p => p.innerHTML = '');
     if (authorElement) authorElement.style.opacity = '0';
 
-    // Start raining petals
     setInterval(spawnPetal, 400);
-    for (let i = 0; i < 10; i++) {
-        setTimeout(spawnPetal, i * 150);
-    }
+    for (let i = 0; i < 10; i++) { setTimeout(spawnPetal, i * 150); }
 
-    // Hide greeting
     const greetingText = document.getElementById('greeting-text');
-    if (greetingText) {
-        greetingText.classList.add('hide');
-    }
+    if (greetingText) greetingText.classList.add('hide');
 
-    // Burst of bottom stuff
-    for (let i = 0; i < 15; i++) {
-        setTimeout(spawnFloatingHeart, i * 80);
-    }
-
-    // Typing effect cursor
-    const cursor = document.createElement('span');
-    cursor.classList.add('typewriter-cursor');
+    for (let i = 0; i < 15; i++) { setTimeout(spawnFloatingHeart, i * 80); }
 
     setTimeout(() => {
-        pElements[0].appendChild(cursor);
-        typeWriter(quoteLines[0], pElements[0], 0, () => {
-            pElements[0].removeChild(cursor);
-            pElements[1].appendChild(cursor);
-            typeWriter(quoteLines[1], pElements[1], 0, () => {
-                pElements[1].removeChild(cursor);
-                if (authorElement) {
-                    authorElement.style.opacity = '1';
-                    authorElement.style.transition = 'opacity 2s ease';
+        if (pElements.length > 0) {
+            const cursor1 = document.createElement('span');
+            cursor1.classList.add('typewriter-cursor');
+            pElements[0].appendChild(cursor1);
+
+            typeWriter(quoteLine1, pElements[0], 0, () => {
+                if (pElements[0].contains(cursor1)) pElements[0].removeChild(cursor1);
+
+                if (pElements.length > 1) {
+                    const cursor2 = document.createElement('span');
+                    cursor2.classList.add('typewriter-cursor');
+                    pElements[1].appendChild(cursor2);
+
+                    typeWriter(quoteLine2, pElements[1], 0, () => {
+                        if (pElements[1].contains(cursor2)) pElements[1].removeChild(cursor2);
+                        if (authorElement) {
+                            authorElement.style.opacity = '1';
+                            authorElement.style.transition = 'opacity 2s ease';
+                        }
+                    });
                 }
             });
-        });
-    }, 1200); // start typing after 1.2s container reveal
+        }
+    }, 1200);
 }, { once: true });
